@@ -47,7 +47,6 @@ int _printf(const char *format, ...)
 			char_count++;
 		}
 	}
-	_putchar('\n');
 	va_end(pointer);
 	return (char_count);
 }
