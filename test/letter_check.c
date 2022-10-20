@@ -1,6 +1,0 @@
-
-
-int letter_check()
-{
-
-}
