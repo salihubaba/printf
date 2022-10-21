@@ -11,8 +11,8 @@
 int _printf(const char *format, ...)
 {
 	int char_count = 0;
-	int format_len = strlen(format);
-	int i, j;
+	size_t format_len = strlen(format);
+	size_t i, j;
 	char *arg_string;
 	char arg_char;
 	int arg_int;
