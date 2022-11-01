@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	int int_len = 0;
 	char *int_str;
 	int arg_int_len;
-	int k, l;
+	int k, l, binary, remainder, p, q;
 	va_list pointer;
 
 	va_start(pointer, format);
@@ -101,6 +101,42 @@ int _printf(const char *format, ...)
 				for (l = 0; l < int_len; l++)
 				{
 					_putchar(int_str[l]);
+					char_count++;
+				}
+			}
+			else if (format[i + 1] == 'b')
+			{
+				/*increment i*/
+				i++;
+				/*convert arg_int to binary*/
+				arg_int = va_arg(pointer, int);
+				binary = 0;
+				p = 1;
+
+				while (arg_int != 0)
+				{
+					remainder = arg_int % 2;
+					arg_int /= 2;
+					binary += remainder * p;
+					p *= 10;
+				}
+				/*convert binary to a string*/
+                                arg_int_len = binary;
+                                do
+                                {
+                                    arg_int_len = arg_int_len / 10;
+                                    ++int_len;
+                                } while (arg_int_len != 0);
+                                int_str = malloc(sizeof(int_str) * int_len);
+                                if (int_str == NULL)
+                                {
+                                    return (1);
+                                }
+				sprintf(int_str, "%i", binary);
+				/*print string*/
+				for (q = 0; q < (int)strlen(int_str); q++)
+				{
+					_putchar(int_str[q]);
 					char_count++;
 				}
 			}
